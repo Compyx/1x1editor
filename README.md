@@ -1,5 +1,5 @@
 # 1x1 characterset editor
-(c) 2017, Compyx/Focus
+(c) 2016-2019, Compyx/Focus
 
 
 ## Introduction
@@ -32,18 +32,17 @@ Use the following keys to control the editor:
 | Cursor keys | Move the cursor in the zoom area |
 | Space       | Plot a pixel, in single color mode this inverts the current pixel, in multi color mode this plots the currently selected color |
 | @, ;, /, :  | Move the cursor in the view area (on PC: [, ', /, ;) |
-| 1-4         | Select color (only in multi color mode: 1=\$d021, 2=\$d022, 3=\$d800,4=\$d800+) |
+| 1-4         | Select color (only in multi color mode: 1=\$D021, 2=\$D022, 3=\$D023,4=\$D800+) |
 | Shift + 1-4 | Increment color |
 | b / B       | Copy to buffer / paste from buffer |
 | c / C       | Clear current character / clear characterset |
-| g / G       | Copy CHARGEN A (\$d000-\$d7ff) or CHARGEN B (\$d800-\$dfff) to character set |
+| g / G       | Copy CHARGEN A (\$D000-\$D7FF) or CHARGEN B (\$D800-\$DFFF) to character set |
 | m / M       | Mirror character in X / Y direction |
 | x / X       | Rotate character left / right |
 | y / Y       | Rotate character up / down |
 | F5          | Toggle multi color mode
 
-Hold the *Commodore* key to display CHARGEN A in the view, and hold *Control* to
-show CHARGEN B in the view. This can be useful when creating a custom charset
+Hold the ***Commodore*** key to display CHARGEN A in the view, and hold ***Control*** to show CHARGEN B in the view. This can be useful when creating a custom charset
 and figuring out where which character is in CHARGEN (I always forget).
 
 
