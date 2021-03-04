@@ -10,6 +10,7 @@ ASM_LABELS=--vice-labels -l $(LABEL_FILE)
 X64=x64sc
 X64_FLAGS=
 
+EXO=exomizer
 
 LABEL_FILE=labels.txt
 
@@ -17,26 +18,15 @@ KERNAL=/usr/local/lib64/vice/C64/kernal
 KERNAL_PATCHED=kernal-quick-memtest
 
 
-TARGET=1x1editor.prg
-SOURCES=src/main.s src/data.s src/edit.s src/sprites.s src/zoom.s
-DATA=
+TARGET = 1x1editor.prg
+SOURCES = src/main.s src/data.s src/edit.s src/sprites.s src/zoom.s
+DATA = prop-2000-22ff.prg
 
 all: $(TARGET)
 
 
 $(TARGET): $(SOURCES) $(DATA)
 	$(ASM) $(ASM_FLAGS) -o $@ $<
-
-
-$(KERNAL_PATCHED): $(KERNAL)
-	cp $(KERNAL) $(KERNAL_PATCHED)
-	echo '1d69: 9f' | xxd -r - $(KERNAL_PATCHED)
-
-
-run: $(TARGET) $(KERNAL_PATCHED)
-	$(X64) $(X64_FLAGS) -kernal $(KERNAL_PATCHED) \
-		-autostartprgmode 1 -autostart-delay 1 \
-		$(TARGET) 2>&1 >vice.log
 
 
 # Remove generated files
@@ -48,4 +38,8 @@ clean:
 .PHONY: srcdist
 srcdist: clean
 	cd .. && tar -cjf 1x1editor-`date +'%Y%m%d'`.tar.bz 1x1editor/
+
+release: $(TARGET)
+	$(EXO) sfx basic $(TARGET) -o 1x1editor-exo.prg
+
 

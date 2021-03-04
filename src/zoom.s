@@ -171,13 +171,13 @@ update_view .proc
 
 
 zoom_single_color .proc
-        char = zp
+        ch = zp
         row = zp + 2
 
 
         jsr edit.get_char_ptr
-        stx char + 0
-        sty char + 1
+        stx ch + 0
+        sty ch + 1
 
         lda #0
         ldx #$d8
@@ -187,7 +187,7 @@ zoom_single_color .proc
         ldy #0
         sty row
 -
-        lda (char),y
+        lda (ch),y
 
         ldy #7
 -
@@ -219,14 +219,14 @@ vidram  sta $d800,y
 
 zoom_multi_color .proc
 
-        char = zp
+        ch = zp
         vidram = zp + 2
         row = zp + 4
         ctmp = zp + 5
 
         jsr edit.get_char_ptr
-        stx char + 0
-        sty char + 1
+        stx ch + 0
+        sty ch + 1
 
         lda #0
         ldx #$d8
@@ -236,7 +236,7 @@ zoom_multi_color .proc
         ldy #0
         sty row
 -
-        lda (char),y
+        lda (ch),y
         sta ctmp
 
         ; %11000000

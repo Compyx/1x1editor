@@ -252,36 +252,36 @@ plot .proc
 ; Invert a single color pixel
 plot_single_color .proc
 
-        char = zp
+        ch = zp
 
         jsr edit.get_char_ptr
-        stx char + 0
-        sty char + 1
+        stx ch + 0
+        sty ch + 1
 
         ldy data.zoom_ypos
         ldx data.zoom_xpos
-        lda (char),y
+        lda (ch),y
         eor data.single_color_bits,x
-        sta (char),y
+        sta (ch),y
         rts
 .pend
 
 
 ; Plot a multi-color pixel
 plot_multi_color .proc
-        char = zp
+        ch = zp
         tmp = zp + 2
 
         jsr edit.get_char_ptr
-        stx char + 0
-        sty char + 1
+        stx ch + 0
+        sty ch + 1
 
         ldy data.zoom_ypos
         lda data.zoom_xpos
         lsr
         tax
         stx tmp + 1
-        lda (char),y
+        lda (ch),y
         and data.multi_mask,x
         sta tmp
         lda data.color_index
@@ -295,7 +295,7 @@ plot_multi_color .proc
         tax
         lda tmp
         ora data.multi_d022,x
-        sta (char),y
+        sta (ch),y
 +       rts
 .pend
 
@@ -463,12 +463,12 @@ rot_once
 ; Mirror character in X direction (along Y-axis)
 mirror_x .proc
 
-        char = zp
+        ch = zp
         tmp = zp + 2
 
         jsr get_char_ptr
-        stx char + 0
-        sty char + 1
+        stx ch + 0
+        sty ch + 1
 
         lda #0
         sta tmp + 1
@@ -478,7 +478,7 @@ mirror_x .proc
 
         ldy #7
 -
-        lda (char),y
+        lda (ch),y
         sta tmp
         ldx #0
         stx tmp + 1
@@ -498,14 +498,14 @@ mirror_x .proc
         cpx #4
         bne -
         lda tmp + 1
-        sta (char),y
+        sta (ch),y
         dey
         bpl --
         rts
 mirror_mc
         ldy #7
 -
-        lda (char),y
+        lda (ch),y
         sta tmp
 
         ; swap bit 7-6 with 1-0
@@ -535,7 +535,7 @@ mirror_mc
         and #%00110000
         ora tmp + 1
 
-        sta (char),y
+        sta (ch),y
 
         dey
         bpl -
@@ -569,14 +569,14 @@ mirror_y .proc
 
 buffer_copy .proc
 
-        char = zp
+        ch = zp
 
         jsr get_char_ptr
-        stx char + 0
-        sty char + 1
+        stx ch + 0
+        sty ch + 1
 
         ldy #7
--       lda (char),y
+-       lda (ch),y
         sta data.buffer,y
         dey
         bpl -
@@ -586,15 +586,15 @@ buffer_copy .proc
 
 buffer_paste .proc
 
-        char = zp
+        ch = zp
 
         jsr get_char_ptr
-        stx char + 0
-        sty char + 1
+        stx ch + 0
+        sty ch + 1
 
         ldy #7
 -       lda data.buffer,y
-        sta (char),y
+        sta (ch),y
         dey
         bpl -
         rts

@@ -10,6 +10,8 @@
         STATUS_TEXT_POS = $0540
         CHARSET = $2000
 
+        DEFAULT_FONT = "../prop-2000-22ff.prg"
+
         PROMPT_POS = $0658
 
         ; flags for executing code after handling an input event
@@ -566,3 +568,12 @@ get_yesno
 
 .pend
 
+
+; Import example charset, clear unused data
+        * = CHARSET
+
+        ; 2000-22ff
+        .binary DEFAULT_FONT, 2
+
+        ; fill 2300-27ff
+        .fill (CHARSET + $0800) - *, $00
