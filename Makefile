@@ -34,12 +34,21 @@ $(TARGET): $(SOURCES) $(DATA)
 clean:
 	rm -f $(TARGET) $(KERNAL_PATCHED)
 
+
 # Generate a tar.bz file outside the project directory
 .PHONY: srcdist
 srcdist: clean
 	cd .. && tar -cjf 1x1editor-`date +'%Y%m%d'`.tar.bz 1x1editor/
 
+
+# Generate an exomized binary
 release: $(TARGET)
 	$(EXO) sfx basic $(TARGET) -o 1x1editor-exo.prg
 
+
+# Generate an zipped version of the exomized prg since some forums won't
+# accept .prg files
+release-zip: $(release)
+	rm -f 1x1editor.zip
+	zip 1x1editor.zip 1x1editor-exo.prg
 

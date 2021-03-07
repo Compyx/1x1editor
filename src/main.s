@@ -231,8 +231,8 @@ irq1
         sta $d018
         lda #8
         sta $d016
-        dec $d020
-        inc $d020
+        ;dec $d020
+        ;inc $d020
 
         lda #$b9
         ldx #<irq2
@@ -271,7 +271,7 @@ irq_vidram
 irq3
         lda #$13
         sta $d011
-        ldx #11
+        ldx #15
 -       dex
         bne -
         lda #6
