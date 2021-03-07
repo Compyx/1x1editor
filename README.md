@@ -1,5 +1,5 @@
 # 1x1 characterset editor
-(c) 2016-2019, Compyx/Focus
+(c) 2016-2021, Compyx/Focus
 
 
 ## Introduction
@@ -17,10 +17,10 @@ the moment.
 
 ## Building
 
-To build this editor, you need a fairly recent version (R1245 or later) of
+To build this editor, you need a fairly recent version (V1.55.2480 or later) of
 [64tass](https://sourceforge.net/projects/tass64/). Either use `make` or run
 64tass directly like this:
-`64tass --ascii --case-sentitive --m6502 main.s -o 1x1editor.prg`
+`64tass --ascii --case-sentitive --m6502 src/main.s -o 1x1editor.prg`
 
 
 ## Instructions
@@ -44,6 +44,4 @@ Use the following keys to control the editor:
 
 Hold the ***Commodore*** key to display CHARGEN A in the view, and hold ***Control*** to show CHARGEN B in the view. This can be useful when creating a custom charset
 and figuring out where which character is in CHARGEN (I always forget).
-
-
 
