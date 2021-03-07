@@ -3,14 +3,13 @@
 ; Simple 1x1 charset editor
 ;
 ; No disk menu, so use VICE's monitor or a cart to save/load charset
-; Written in 2016, so some 64tass code might be outdated.
 
 
 
         STATUS_TEXT_POS = $0540
         CHARSET = $2000
 
-        DEFAULT_FONT = "../prop-2000-22ff.prg"
+        DEFAULT_FONT = "../data/prop-2000-22ff.prg"
 
         PROMPT_POS = $0658
 

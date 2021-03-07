@@ -19,8 +19,11 @@ KERNAL_PATCHED=kernal-quick-memtest
 
 
 TARGET = 1x1editor.prg
+TARGET_EXO = 1x1editor-exo.prg
+TARGET_ZIP = 1x1editor.zip
+
 SOURCES = src/main.s src/data.s src/edit.s src/sprites.s src/zoom.s
-DATA = prop-2000-22ff.prg
+DATA = data/prop-2000-22ff.prg
 
 all: $(TARGET)
 
@@ -32,7 +35,8 @@ $(TARGET): $(SOURCES) $(DATA)
 # Remove generated files
 .PHONY: clean
 clean:
-	rm -f $(TARGET) $(KERNAL_PATCHED)
+	rm -f $(TARGET)
+	rm -f $(TARGET_EXO)
 
 
 # Generate a tar.bz file outside the project directory
@@ -43,12 +47,11 @@ srcdist: clean
 
 # Generate an exomized binary
 release: $(TARGET)
-	$(EXO) sfx basic $(TARGET) -o 1x1editor-exo.prg
+	$(EXO) sfx basic $(TARGET) -o $(TARGET_EXO)
 
 
 # Generate an zipped version of the exomized prg since some forums won't
 # accept .prg files
-release-zip: $(release)
-	rm -f 1x1editor.zip
-	zip 1x1editor.zip 1x1editor-exo.prg
-
+release-zip: release
+	rm -f $(TARGET_ZIP)
+	zip $(TARGET_ZIP) $(TARGET_EXO)
